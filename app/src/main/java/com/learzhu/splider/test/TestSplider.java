@@ -34,7 +34,7 @@ public class TestSplider {
             System.out.println(data.getLinkText());
             System.out.println(data.getLinkHref());
             System.out.println("***********************************");
-            mStringBuilder.append(data.getLinkText() + " /").append(data.getLinkHref() + " /").append("*******");
+            mStringBuilder.append(data.getLinkText() + " \n").append(data.getLinkHref() + " \n");
         }
         return mStringBuilder;
     }
