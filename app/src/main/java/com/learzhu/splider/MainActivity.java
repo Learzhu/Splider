@@ -2,6 +2,7 @@ package com.learzhu.splider;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         testBtn = (Button) findViewById(R.id.test_btn);
         testBtn.setOnClickListener(this);
         showResultTv = (TextView) findViewById(R.id.show_result_tv);
+        showResultTv.setMovementMethod(ScrollingMovementMethod.getInstance());
     }
 
     @Override
