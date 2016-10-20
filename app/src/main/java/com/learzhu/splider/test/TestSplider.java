@@ -11,9 +11,12 @@ import java.util.List;
  */
 
 public class TestSplider {
+    private String url = "http://www1.sxcredit.gov.cn/public/infocomquery.do?method=publicIndexQuery";
+    private String url1 = "http://www.11315.com/search";
+
     public StringBuilder getDatasByClass() {
         Rule rule = new Rule(
-                "http://www1.sxcredit.gov.cn/public/infocomquery.do?method=publicIndexQuery",
+                url,
                 new String[]{"query.enterprisename", "query.registationnumber"}, new String[]{"兴网", ""},
                 "cont_right", Rule.CLASS, Rule.POST);
         List<LinkTypeData> extracts = ExtractService.extract(rule);
@@ -21,7 +24,7 @@ public class TestSplider {
     }
 
     public StringBuilder getDatasByCssQuery() {
-        Rule rule = new Rule("http://www.11315.com/search",
+        Rule rule = new Rule(url1,
                 new String[]{"name"}, new String[]{"兴网"},
                 "div.g-mn div.con-model", Rule.SELECTION, Rule.GET);
         List<LinkTypeData> extracts = ExtractService.extract(rule);
