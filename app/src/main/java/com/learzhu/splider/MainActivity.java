@@ -1,8 +1,7 @@
 package com.learzhu.splider;
 
-import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
@@ -12,15 +11,6 @@ import android.widget.TextView;
 
 import com.learzhu.splider.net.HttpClientUtil;
 import com.learzhu.splider.test.TestSplider;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.parser.Tag;
-
-import java.io.File;
-import java.io.IOException;
-
-import static android.R.attr.path;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -85,7 +75,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                form.addFileField("file", file);
 //                form.addNormalField("ID", "301201604");
                 form.addNormalField("name", userName);
-                form.addNormalField("password", userPwd);
+                form.addNormalField("atg_store_registerLoginEmailAddress", userName);
+                form.addNormalField("atg_store_registerLoginPassword", userPwd);
+//                form.addNormalField("password", userPwd);
                 String resultcode = httpClient.submitForm(form);
                 showResultTv.setText(resultcode);
             }
