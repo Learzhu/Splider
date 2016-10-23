@@ -1,24 +1,37 @@
 package com.learzhu.splider;
 
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import com.learzhu.splider.net.HttpClientUtil;
 import com.learzhu.splider.test.TestSplider;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.parser.Tag;
 
+import java.io.File;
 import java.io.IOException;
+
+import static android.R.attr.path;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button testBtn;
+    private Button testBtn, loginBtn;
     private TextView showResultTv;
+    private EditText userNameEt, userPwdEt;
     private String url = "http://www.oschina.net/";
+    private String loginUrl = "https://www.e-shenhua.com/ec/index.jsp?locale=zh_CN&_requestid=8221//com/shenhua/userprofiling/ShenHuaProfileFormHandler.login";
+    private static final String TAG = "MainActivity";
+    /*用户名密码*/
+    private String userName, userPwd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         testBtn.setOnClickListener(this);
         showResultTv = (TextView) findViewById(R.id.show_result_tv);
         showResultTv.setMovementMethod(ScrollingMovementMethod.getInstance());
+        loginBtn = (Button) findViewById(R.id.login_btn);
+        loginBtn.setOnClickListener(this);
+        userNameEt = (EditText) findViewById(R.id.user_name_et);
+        userPwdEt = (EditText) findViewById(R.id.user_pwd_et);
     }
 
     @Override
@@ -41,7 +58,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 doTest();
 //                testSplider();
                 break;
+            case R.id.login_btn:
+                doLogin();
+                break;
         }
+    }
+
+    /**
+     * 用户登录
+     */
+    private void doLogin() {
+        userName = userNameEt.getText().toString();
+        userPwd = userPwdEt.getText().toString();
+        Log.i(TAG, "username " + userName + " userPwd " + userPwd);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                HttpClientUtil httpClient = new HttpClientUtil();
+                HttpClientUtil.MultipartForm form = httpClient.new MultipartForm();
+                //设置form属性、参数
+//                form.setAction("http://192.168.1.5:9001/api/Mobile/FileUpload/UploadFile");
+                form.setAction("https://www.e-shenhua.com/ec/myaccount/login.jsp?DPSLogout=true/com/shenhua/userprofiling/ShenHuaProfileFormHandler.login");
+//                String path = Environment.getExternalStorageDirectory().getPath() + "/DCIM" + "/20151120_051052.jpg";
+//                Log.e("11", path);
+//                File file = new File(path);
+//                form.addFileField("file", file);
+//                form.addNormalField("ID", "301201604");
+                form.addNormalField("name", userName);
+                form.addNormalField("password", userPwd);
+                String resultcode = httpClient.submitForm(form);
+                showResultTv.setText(resultcode);
+            }
+        }).start();
     }
 
     private void doTest() {
