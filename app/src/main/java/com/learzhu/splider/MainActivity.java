@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.learzhu.splider.net.HttpClientUtil;
 import com.learzhu.splider.test.TestSplider;
 
+import org.jsoup.helper.StringUtil;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button testBtn, loginBtn;
@@ -74,18 +76,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                File file = new File(path);
 //                form.addFileField("file", file);
 //                form.addNormalField("ID", "301201604");
-                form.addNormalField("name", userName);
                 form.addNormalField("atg_store_registerLoginEmailAddress", userName);
                 form.addNormalField("atg_store_registerLoginPassword", userPwd);
 //                form.addNormalField("password", userPwd);
                 final String resultcode = httpClient.submitForm(form);
-//                showResultTv.postDelayed()
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        showResultTv.setText(resultcode);
+                        showResultTv.setText(StringUtil.normaliseWhitespace(resultcode));
                     }
                 });
+              /*  new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                    }
+                }).start();*/
+                showResultTv.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        showResultTv.setText(StringUtil.normaliseWhitespace(resultcode));
+                    }
+                });
+//                showResultTv.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//
+//                    }
+//                });
             }
         }).start();
     }
@@ -108,13 +126,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-        TestSplider testSplider = new TestSplider();
+        final TestSplider testSplider = new TestSplider();
         final StringBuilder mDatasByClass = testSplider.getDatasByClass();
         final StringBuilder mDatasByCssQuery = testSplider.getDatasByCssQuery();
         showResultTv.post(new Runnable() {
             @Override
             public void run() {
-                showResultTv.setText(mDatasByClass.toString() + " \n*****" + mDatasByCssQuery.toString());
+//                showResultTv.setText(mDatasByClass.toString() + " \n*****" + mDatasByCssQuery.toString());
+                showResultTv.setText(testSplider.getDataSpliterByClass());
             }
         });
     }

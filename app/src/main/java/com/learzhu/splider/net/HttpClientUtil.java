@@ -78,6 +78,7 @@ public class HttpClientUtil {
             if (200 == statusCode) {
                 if (resEntity != null) {
                     responseStr = EntityUtils.toString(resEntity);
+                    Log.e("HttpClientUtil", "结果：" + resEntity.toString());
                 }
             }
         } catch (Exception e) {

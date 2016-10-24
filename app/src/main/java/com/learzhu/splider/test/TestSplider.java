@@ -13,6 +13,15 @@ import java.util.List;
 public class TestSplider {
     private String url = "http://www1.sxcredit.gov.cn/public/infocomquery.do?method=publicIndexQuery";
     private String url1 = "http://www.11315.com/search";
+    private String spliderUrl = "https://www.e-shenhua.com/ec/myaccount/login.jsp?DPSLogout=true/com/shenhua/userprofiling/ShenHuaProfileFormHandler.login";
+//    private String spliderUrl = "https://www.e-shenhua.com/ec/myaccount/login.jsp";
+
+
+    public StringBuilder getDataSpliterByClass() {
+        Rule rule = new Rule(spliderUrl, new String[]{"query.atg_store_registerLoginEmailAddress", "atg_store_registerLoginPassword"}, new String[]{"wchgsl_1b", "Slb$88278572"}, "cont_right", Rule.CLASS, Rule.POST);
+        List<LinkTypeData> extracts = ExtractService.extract(rule);
+        return printf(extracts);
+    }
 
     public StringBuilder getDatasByClass() {
         Rule rule = new Rule(
@@ -42,9 +51,4 @@ public class TestSplider {
         return mStringBuilder;
     }
 
-//    public static void main(String args[]) {
-//        Test test = new Test();
-//        test.getDatasByClass();
-//        test.getDatasByCssQuery();
-//    }
 }
