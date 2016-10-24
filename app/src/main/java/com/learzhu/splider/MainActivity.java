@@ -78,8 +78,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 form.addNormalField("atg_store_registerLoginEmailAddress", userName);
                 form.addNormalField("atg_store_registerLoginPassword", userPwd);
 //                form.addNormalField("password", userPwd);
-                String resultcode = httpClient.submitForm(form);
-                showResultTv.setText(resultcode);
+                final String resultcode = httpClient.submitForm(form);
+//                showResultTv.postDelayed()
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        showResultTv.setText(resultcode);
+                    }
+                });
             }
         }).start();
     }

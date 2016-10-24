@@ -21,6 +21,26 @@ android {
     /*  testOptions {
           resultsDir = "${project.buildDir}/foo/results"
       }*/
+
+    /*ignore bug for android Studio exclude 'META-INF/DEPENDENCIES'*/
+//    Error:FAILURE: Build failed with an exception.
+//
+//    * What went wrong:
+//    Execution failed for task ':app:transformResourcesWithMergeJavaResForDebug'.
+//            > com.android.build.api.transform.TransformException: com.android.builder.packaging.DuplicateFileException: Duplicate files copied in APK META-INF/LICENSE
+//    File1: F:\Learzhu\AndroidProjects\Splider\app\libs\httpclient-4.3.5.jar
+//    File2: F:\Learzhu\AndroidProjects\Splider\app\libs\httpclient-cache-4.3.5.jar
+//    File3: F:\Learzhu\AndroidProjects\Splider\app\libs\httpcore-4.3.2.jar
+//    File4: F:\Learzhu\AndroidProjects\Splider\app\libs\httpmime-4.3.5.jar
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+
 }
 
 dependencies {

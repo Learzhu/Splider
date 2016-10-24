@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.learzhu.splider.MainActivity">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/activity_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.learzhu.splider.MainActivity">
 
     <LinearLayout
         android:id="@+id/user_info"
@@ -20,13 +20,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="用户名：" />
+                android:text="用户名："/>
 
             <EditText
                 android:id="@+id/user_name_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="wchgsl_1b" />
+                android:text="wchgsl_1b"
+                tools:text="wchgsl_1b"/>
         </LinearLayout>
         <!--密码-->
         <LinearLayout
@@ -37,21 +38,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="密码：" />
+                android:text="密码："/>
 
             <EditText
                 android:id="@+id/user_pwd_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                tools:text="Slb$88278572" />
+                android:text="Slb$88278572"
+                tools:text="Slb$88278572"/>
         </LinearLayout>
 
         <Button
             android:id="@+id/login_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="登录" />
+            android:text="登录"/>
     </LinearLayout>
 
     <Button
@@ -60,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/user_info"
-        android:text="测试" />
+        android:text="测试"/>
 
     <TextView
         android:id="@+id/show_result_tv"
@@ -69,6 +71,6 @@
         android:layout_below="@+id/test_btn"
         android:scrollbars="vertical"
         android:textSize="20sp"
-        tools:text="sssss" />
+        tools:text="sssss"/>
 
 </RelativeLayout>
