@@ -70,14 +70,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 HttpClientUtil.MultipartForm form = httpClient.new MultipartForm();
                 //设置form属性、参数
 //                form.setAction("http://192.168.1.5:9001/api/Mobile/FileUpload/UploadFile");
-                form.setAction("https://www.e-shenhua.com/ec/myaccount/login.jsp?DPSLogout=true/com/shenhua/userprofiling/ShenHuaProfileFormHandler.login");
+//                form.setAction("https://www.e-shenhua.com/ec/myaccount/login.jsp?DPSLogout=true/com/shenhua/userprofiling/ShenHuaProfileFormHandler.login");
+                form.setAction("https://www.e-shenhua.com/ec/myaccount/login.jsp?DPSLogout=true_D:/com/shenhua/userprofiling/ShenHuaProfileFormHandler.login");
+//                form.setAction("https://www.e-shenhua.com/ec/myaccount/login.jsp?DPSLogout=true/com/shenhua/userprofiling/ShenHuaProfileFormHandler.value.login");
 //                String path = Environment.getExternalStorageDirectory().getPath() + "/DCIM" + "/20151120_051052.jpg";
 //                Log.e("11", path);
 //                File file = new File(path);
 //                form.addFileField("file", file);
 //                form.addNormalField("ID", "301201604");
-                form.addNormalField("atg_store_registerLoginEmailAddress", userName);
-                form.addNormalField("atg_store_registerLoginPassword", userPwd);
+
+//                form.addNormalField("atg_store_registerLoginEmailAddress", userName);
+//                form.addNormalField("atg_store_registerLoginPassword", userPwd);
+
+                form.addNormalField("_D:atg_store_registerLoginEmailAddress", userName);
+                form.addNormalField("_D:atg_store_registerLoginPassword", userPwd);
+
 //                form.addNormalField("password", userPwd);
                 final String resultcode = httpClient.submitForm(form);
                 runOnUiThread(new Runnable() {
